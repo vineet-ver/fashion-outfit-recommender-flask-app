@@ -114,12 +114,10 @@ def index():
 
 @app.route('/get_options')
 def get_options():
-    """Get available options for dropdown menus"""
     global df
-    
     if df is None:
         return jsonify({'error': 'Data not loaded'})
-    
+
     options = {
         'skin_tones': sorted(df['Skin Tone'].unique().tolist()),
         'hair_colors': sorted(df['Hair Color'].unique().tolist()),
@@ -127,8 +125,8 @@ def get_options():
         'body_shapes': sorted(df['Body Shape'].unique().tolist()),
         'body_proportions': sorted(df['Body Proportion'].unique().tolist())
     }
-    
     return jsonify(options)
+
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
